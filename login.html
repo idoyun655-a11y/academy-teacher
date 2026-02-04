@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>선생님 로그인 | 학원</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brandMark"></div>
+      <div>
+        <div class="brandTitle">학원 시스템</div>
+        <div class="brandSub">선생님</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <div class="navLabel">메뉴</div>
+      <a class="active" href="login.html"><span class="dot"></span>로그인</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="tabs"><button class="tab active">로그인</button></div>
+      <div class="topRight"><span class="badge yellow"><strong>공동 계정</strong></span></div>
+    </header>
+
+    <section class="content">
+      <div class="card">
+        <div class="cardTitle">
+          <h1>선생님 로그인</h1>
+          <span class="badge">Email/Password</span>
+        </div>
+
+        <label class="label">이메일</label>
+        <input id="email" class="input" placeholder="teacher@youracademy.com" />
+
+        <label class="label">비밀번호</label>
+        <input id="password" class="input" type="password" placeholder="••••••••" />
+
+        <div class="row">
+          <button class="btn" id="loginBtn">로그인</button>
+          <button class="btn ghost" id="createProfileBtn">프로필(teacher) 저장</button>
+        </div>
+
+        <div class="note">
+- 처음 1번은 Supabase에서 선생 계정을 "Add user"로 만들어 두는 걸 추천.
+- 로그인 후 메뉴로 이동해서 학생/출결/숙제/성적 관리 가능.
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script type="module" src="login.js"></script>
+</body>
+</html>

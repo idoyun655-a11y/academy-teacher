@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>출결 | 선생님</title><link rel="stylesheet" href="style.css"/></head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brandMark"></div>
+    <div>
+      <div class="brandTitle">학원 시스템</div>
+      <div class="brandSub">선생님</div>
+    </div>
+  </div>
+  <nav class="nav">
+    <div class="navLabel">관리</div>
+    <a class="" href="students.html"><span class="dot"></span>학생</a>
+    <a class="active" href="attendance.html"><span class="dot"></span>출결</a>
+    <a class="" href="homework.html"><span class="dot"></span>숙제</a>
+    <a class="" href="grades_school.html"><span class="dot"></span>내신(영어)</a>
+    <a class="" href="grades_mock.html"><span class="dot"></span>모의고사(영어)</a>
+    <div class="navLabel">계정</div>
+    <a href="login.html"><span class="dot"></span>로그인</a>
+  </nav>
+</aside>
+
+<main class="main">
+<header class="topbar">
+  <div class="tabs"><button class="tab active">출결</button></div>
+  <div class="topRight">
+    <div class="pill">
+      <div class="small">teacher</div>
+      <div class="who" id="miniName">-</div>
+    </div>
+    <button class="btn ghost" id="logoutBtn">로그아웃</button>
+  </div>
+</header>
+
+<section class="content">
+  <div class="card">
+    <div class="cardTitle">
+      <h1>출결 등록</h1>
+      <span class="badge">학생 선택 → 상태 저장</span>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <label class="label">학생</label>
+        <select id="studentSel" class="input"></select>
+      </div>
+      <div>
+        <label class="label">날짜</label>
+        <input id="date" class="input" type="date"/>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <label class="label">상태</label>
+        <select id="status" class="input">
+          <option>출석</option><option>지각</option><option>결석</option><option>조퇴</option>
+        </select>
+      </div>
+      <div>
+        <label class="label">메모(선택)</label>
+        <input id="note" class="input" placeholder="예: 10분 지각"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <button class="btn" id="saveBtn">저장</button>
+      <button class="btn ghost" id="refreshBtn">새로고침</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="cardTitle"><h1>최근 기록</h1><span class="badge">최근 30건</span></div>
+    <table class="table" id="tbl">
+      <thead><tr><th>날짜</th><th>학생</th><th>상태</th><th>메모</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+</main>
+</div>
+<script type="module" src="attendance.js"></script>
+</body></html>

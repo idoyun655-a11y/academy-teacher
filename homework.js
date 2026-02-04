@@ -1,0 +1,62 @@
+import { supabase, qs, toast } from "./supabase_client.js";
+import { requireTeacher } from "./common.js";
+
+function trRow(vals){
+  const tr=document.createElement("tr");
+  vals.forEach(v=>{
+    const td=document.createElement("td");
+    td.textContent=v??"";
+    tr.appendChild(td);
+  });
+  return tr;
+}
+
+async function loadStudents(){
+  const { data, error } = await supabase.from("students").select("id,name").order("name");
+  if(error) throw error;
+  const sel=qs("#studentSel");
+  sel.innerHTML="";
+  data.forEach(s=>{
+    const o=document.createElement("option");
+    o.value=s.id; o.textContent=s.name;
+    sel.appendChild(o);
+  });
+}
+
+async function loadRecent(){
+  const { data, error } = await supabase
+    .from("homework")
+    .select("due_date,title,status,students(name)")
+    .order("created_at",{ascending:false})
+    .limit(30);
+  if(error) throw error;
+  const body=qs("#tbl tbody"); body.innerHTML="";
+  data.forEach(r=>{
+    body.appendChild(trRow([r.due_date||"", r.students?.name||"", r.title, r.status]));
+  });
+}
+
+qs("#saveBtn").addEventListener("click", async ()=>{
+  try{
+    await requireTeacher();
+    const student_id = qs("#studentSel").value;
+    const due_date = qs("#due").value || null;
+    const title = qs("#title").value.trim();
+    const status = qs("#status").value;
+    if(!student_id) return toast("학생 선택!");
+    if(!title) return toast("제목 입력!");
+    const { error } = await supabase.from("homework").insert({ student_id, due_date, title, status });
+    if(error) throw error;
+    toast("저장 완료!");
+    qs("#title").value="";
+    await loadRecent();
+  }catch(e){ toast(e.message||String(e)); }
+});
+
+qs("#refreshBtn").addEventListener("click", async ()=>{ await loadStudents(); await loadRecent(); });
+
+(async ()=>{
+  await requireTeacher();
+  await loadStudents();
+  await loadRecent();
+})().catch(e=>toast(e.message||String(e)));

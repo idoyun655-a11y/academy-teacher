@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>내신(영어) | 선생님</title><link rel="stylesheet" href="style.css"/></head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brandMark"></div>
+    <div>
+      <div class="brandTitle">학원 시스템</div>
+      <div class="brandSub">선생님</div>
+    </div>
+  </div>
+  <nav class="nav">
+    <div class="navLabel">관리</div>
+    <a class="" href="students.html"><span class="dot"></span>학생</a>
+    <a class="" href="attendance.html"><span class="dot"></span>출결</a>
+    <a class="" href="homework.html"><span class="dot"></span>숙제</a>
+    <a class="active" href="grades_school.html"><span class="dot"></span>내신(영어)</a>
+    <a class="" href="grades_mock.html"><span class="dot"></span>모의고사(영어)</a>
+    <div class="navLabel">계정</div>
+    <a href="login.html"><span class="dot"></span>로그인</a>
+  </nav>
+</aside>
+
+<main class="main">
+<header class="topbar">
+  <div class="tabs"><button class="tab active">내신(영어)</button></div>
+  <div class="topRight">
+    <div class="pill">
+      <div class="small">teacher</div>
+      <div class="who" id="miniName">-</div>
+    </div>
+    <button class="btn ghost" id="logoutBtn">로그아웃</button>
+  </div>
+</header>
+
+<section class="content">
+  <div class="card">
+    <div class="cardTitle"><h1>내신 등록 (5등급)</h1><span class="badge yellow"><strong>2009+</strong> 기준 운영</span></div>
+
+    <div class="grid2">
+      <div>
+        <label class="label">학생</label>
+        <select id="studentSel" class="input"></select>
+      </div>
+      <div>
+        <label class="label">시험구분</label>
+        <select id="examType" class="input">
+          <option value="중간">중간</option>
+          <option value="기말">기말</option>
+          <option value="수행">수행</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <label class="label">학년</label>
+        <select id="schoolYear" class="input">
+          <option value="1">1학년</option><option value="2">2학년</option><option value="3">3학년</option>
+        </select>
+      </div>
+      <div>
+        <label class="label">학기</label>
+        <select id="semester" class="input"><option value="1">1학기</option><option value="2">2학기</option></select>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <label class="label">원점수(0~100)</label>
+        <input id="score" class="input" type="number" min="0" max="100" placeholder="예: 77"/>
+      </div>
+      <div>
+        <label class="label">등급(1~5)</label>
+        <select id="grade" class="input">
+          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <label class="label">석차(선택)</label>
+        <input id="rank" class="input" type="number" min="1" placeholder="예: 53"/>
+      </div>
+      <div>
+        <label class="label">응시자수(선택)</label>
+        <input id="total" class="input" type="number" min="1" placeholder="예: 246"/>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <label class="label">과목평균(선택)</label>
+        <input id="avg" class="input" type="number" step="0.1" min="0" max="100" placeholder="예: 41.4"/>
+      </div>
+      <div>
+        <label class="label">메모(선택)</label>
+        <input id="note" class="input" placeholder="예: 1차 지필평가"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <button class="btn" id="saveBtn">저장</button>
+      <button class="btn ghost" id="refreshBtn">새로고침</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="cardTitle"><h1>최근 내신(영어)</h1><span class="badge">최근 30건</span></div>
+    <table class="table" id="tbl">
+      <thead><tr>
+        <th>학년/학기</th><th>시험</th><th>학생</th><th>점수</th><th>등급</th><th>석차</th><th>응시</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+</main>
+</div>
+<script type="module" src="grades_school.js"></script>
+</body></html>
