@@ -107,3 +107,18 @@ qs("#refreshBtn").addEventListener("click", async ()=>{ await loadStudents(); aw
   qs("#year").value = new Date().getFullYear();
   await loadRecent();
 })().catch(e=>toast(e.message||String(e)));
+
+
+// 학생 선택 해제(다른 학생으로 변경)
+try{
+  const btn = qs("#clearStudentBtn");
+  if(btn){
+    btn.addEventListener("click", ()=>{
+      localStorage.removeItem(SELECT_KEY);
+      location.reload();
+    });
+    // 선택이 고정된 상태에서만 버튼 표시
+    const sel = qs("#studentSel");
+    if(sel && !sel.disabled) btn.style.display = "none";
+  }
+}catch{}

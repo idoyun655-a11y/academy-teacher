@@ -73,6 +73,14 @@ drop policy if exists "read own profile" on profiles;
 create policy "read own profile" on profiles for select
 using (user_id = auth.uid());
 
+-- students: add school_level (초/중/고)
+alter table if exists public.students add column if not exists school_level text not null default '고';
+
+-- students: add class_name (반) and note
+alter table if exists public.students add column if not exists class_name text;
+alter table if exists public.students add column if not exists note text;
+
+
 -- profile: user can upsert own profile (student/parent name update)
 drop policy if exists "upsert own profile" on profiles;
 create policy "upsert own profile" on profiles for insert
@@ -90,6 +98,16 @@ create table if not exists students (
   birth_year int,           -- 2009+
   created_at timestamp default now()
 );
+
+
+-- students: add school_level (초/중/고)
+alter table if exists public.students add column if not exists school_level text not null default '고';
+
+-- students: add class_name (반) and note
+alter table if exists public.students add column if not exists class_name text;
+alter table if exists public.students add column if not exists note text;
+
+
 alter table students enable row level security;
 
 -- teachers can manage students
@@ -290,3 +308,9 @@ begin
   values (auth.uid(), p_role, p_name)
   on conflict (user_id) do update set role = excluded.role, name = excluded.name;
 end $$;
+
+
+-- attendance/homework: prevent duplicates
+create unique index if not exists attendance_unique on public.attendance(student_id, date);
+create unique index if not exists homework_unique on public.homework(student_id, due_date, title);
+

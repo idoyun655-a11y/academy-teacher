@@ -40,7 +40,12 @@
   <div class="card">
     <div class="cardTitle"><h1>숙제 등록</h1><span class="badge">상태 관리</span></div>
 
-    <div class="grid2">
+    <div class="grid3">
+      <div>
+        <label class="label">반</label>
+        <select id="classSel" class="input"></select>
+        <div class="smallmuted">반 전체 적용도 가능</div>
+      </div>
       <div>
         <label class="label">학생</label>
         <select id="studentSel" class="input"></select>
@@ -63,6 +68,7 @@
       </div>
       <div class="row" style="justify-content:flex-end; margin-top:24px">
         <button class="btn" id="saveBtn">저장</button>
+      <button class="btn ghost" id="bulkSaveBtn">반 전체 저장</button>
         <button class="btn ghost" id="refreshBtn">새로고침</button>
       </div>
     </div>

@@ -49,31 +49,65 @@
         <input id="stName" class="input" placeholder="예: 홍길동"/>
       </div>
       <div>
-        <label class="label">학년</label>
-        <select id="stGrade" class="input">
-          <option value="1">1학년</option>
-          <option value="2">2학년</option>
-          <option value="3">3학년</option>
-        </select>
+        <div class="grid2" style="gap:12px;">
+          <div>
+            <label class="label">학교급</label>
+            <select id="stSchool" class="input">
+              <option value="초">초등</option>
+              <option value="중">중등</option>
+              <option value="고" selected>고등</option>
+            </select>
+          </div>
+          <div>
+            <label class="label">학년</label>
+            <select id="stGrade" class="input"></select>
+          </div>
+        </div>
       </div>
-    </div>
 
+    
     <div class="grid2">
       <div>
         <label class="label">출생연도(선택)</label>
         <input id="stBirth" class="input" placeholder="예: 2009" />
         <div class="smallmuted">2009년생부터 내신 5등급제라는 정보 관리를 위해 저장(선택)</div>
       </div>
+      <div></div>
+    </div>
+
+
+    <div class="grid2">
+      <div>
+        <label class="label">반(선택)</label>
+        <input id="stClass" class="input" placeholder="예: A반"/>
+      </div>
       <div>
         <label class="label">메모(선택)</label>
-        <input id="stNote" class="input" placeholder="예: A반 / 특이사항"/>
+        <input id="stNote" class="input" placeholder="예: 특이사항"/>
       </div>
     </div>
+
 
     <div class="row">
       <button class="btn" id="addStudentBtn">학생 추가</button>
       <button class="btn ghost" id="refreshBtn">새로고침</button>
     </div>
+  </div>
+
+
+  <div class="card" id="selectedActions" style="display:none;">
+    <div class="cardTitle">
+      <h1>선택된 학생</h1>
+      <span class="badge" id="selStudentName">-</span>
+    </div>
+    <div class="row" style="flex-wrap:wrap;">
+      <a class="btn ghost" href="attendance.html">출결 입력</a>
+      <a class="btn ghost" href="homework.html">숙제 입력</a>
+      <a class="btn ghost" href="grades_school.html">내신(영어)</a>
+      <a class="btn ghost" href="grades_mock.html">모의고사(영어)</a>
+      <button class="btn ghost" id="clearStudentBtn2">선택 해제</button>
+    </div>
+    <div class="smallmuted">※ 다른 화면으로 이동하면 해당 학생이 자동으로 고정돼. (학생 변경 버튼으로 해제 가능)</div>
   </div>
 
   <div class="card">
